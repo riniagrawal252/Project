@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+/* Light theme (default) */
+body {
+    background-color: antiquewhite;
+    color: black;
+}
+
+/* Dark theme */
+body.dark-theme {
+    background-color: #121212; /* Dark gray */
+    color: white;
+}
+
+nav.dark-theme, .container.dark-theme, .bottom.dark-theme {
+    background-color: #1c1c1c; /* Darker backgrounds for elements */
+}
+#themeToggle {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+#themeToggle.dark {
+    background-color: #333;
+    color: white;
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+nav{
+    font-family: 'Ubuntu', sans-serif;
+}
+
+nav ul{
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    height: 65px;
+    background-color: black;
+    color: white;
+}
+
+nav ul li{
+    padding: 0 12px;
+}
+.brand img{
+    width: 44px;
+    padding: 0 8px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    font-weight: bolder;
+    font-size: 1.3rem;
+}
+
+.container{
+    min-height: 72vh;
+    background-color: black;
+    color: white;
+   font-family: 'Varela Round', sans-serif;
+   display: flex;
+   margin: 23px auto;
+   width: 70%;
+   border-radius: 12px;
+   padding: 34px;
+   background-image: url('bg.jpg');
+}
+
+.bottom{
+    position: sticky;
+    bottom: 0;
+    height: 130px;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; 
+}
+
+.icons{
+    margin-top: 14px; 
+    
+
+}
+.icons-right{
+    margin-right:150px;
+}
+.icons i{
+    cursor: pointer;
+}
+
+#myProgressBar{
+    width: 80vw; 
+    cursor: pointer;
+}
+
+.songItemContainer{
+    margin-top: 74px;
+}
+
+.songItem{
+    height: 50px;
+    display: flex;
+    background-color: white;
+    
+    color: black;
+    margin: 12px 0;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 34px;
+}
+
+.songItem img{
+    width: 43px;
+    margin: 0 23px;
+    border-radius: 34px;
+}
+
+.timestamp{
+    margin: 0 23px;
+}
+
+.timestamp i{
+    cursor: pointer;
+}
+
+.songInfo{
+    position: absolute;
+    left: 10vw;
+    font-family: 'Varela Round', sans-serif;
+}
+
+.songInfo img{
+    opacity: 0;
+    transition: opacity 0.4s ease-in;
+}
+
+
+@media only screen and (max-width: 700px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+    nav ul li {
+        font-size: 0.9rem;
+        padding: 0 8px;
+    }
+    #myProgressBar {
+        width: 90vw;
+    }
+}
+
+.volumeControl input[type="range"] {
+    -webkit-appearance: none;
+    height: 4px;
+    background: #ddd;
+    border-radius: 5px;
+    outline: none;
+}
+.volumeControl input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    background: #1db954; /* Spotify green */
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.songItem.playing {
+    animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+    from {
+        background-color: #f0f0f0;
+    }
+    to {
+        background-color: #d3ffd3; /* Slight green tint */
+    }
+}
+
+.songItem.finished {
+    opacity: 0.5; /* Dim the song item */
+    transition: opacity 0.5s ease;
+}
+#loopButton.active {
+    color: #1db954; /* Spotify green when active */
+    
+}
+
+.icons-right {
+    position: absolute;
+    right: 20px; /* Adjust the value as needed */
+    top: 50%; /* Center vertically if needed */
+    
+}
+
+
+
+
