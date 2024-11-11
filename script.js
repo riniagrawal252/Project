@@ -1,10 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
+    if (audioElement.paused) {
+        masterPlay.classList.remove('fa-pause-circle');
+        masterPlay.classList.add('fa-play-circle');
+    } else {
+        masterPlay.classList.remove('fa-play-circle');
+        masterPlay.classList.add('fa-pause-circle');
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
     if (localStorage.getItem('theme') === 'dark') {
         document.body.classList.add('dark-theme');
     }
 });
 
-let themeToggle = document.getElementById('themeToggle');
+
+
+
 
 console.log("Welcome to Spotify");
 
@@ -41,27 +53,26 @@ audioElement.addEventListener('timeupdate', () => {
 let songs = [
     {songName: "Warriyo - Mortals [NCS Release]", filePath: "songs/1.mp3", coverPath: "covers/1.jpg"},
     {songName: "Cielo - Huma-Huma", filePath: "songs/2.mp3", coverPath: "covers/2.jpg"},
-    {songName: "DEAF KEV - Invincible [NCS Release]-320k", filePath: "songs/3.mp3", coverPath: "covers/3.jpg"},
-    {songName: "Different Heaven & EH!DE - My Heart [NCS Release]", filePath: "songs/4.mp3", coverPath: "covers/4.jpg"},
-    {songName: "Janji-Heroes-Tonight-feat-Johnning-NCS-Release", filePath: "songs/5.mp3", coverPath: "covers/5.jpg"},
-    {songName: "Rabba - Salam-e-Ishq", filePath: "songs/2.mp3", coverPath: "covers/6.jpg"},
-    {songName: "Sakhiyaan - Salam-e-Ishq", filePath: "songs/2.mp3", coverPath: "covers/7.jpg"},
-    {songName: "Bhula Dena - Salam-e-Ishq", filePath: "songs/2.mp3", coverPath: "covers/8.jpg"},
-    {songName: "Tumhari Kasam - Salam-e-Ishq", filePath: "songs/2.mp3", coverPath: "covers/9.jpg"},
-    {songName: "Na Jaana - Salam-e-Ishq", filePath: "songs/4.mp3", coverPath: "covers/10.jpg"},
+    {songName: "DEAF KEV - Invincible ", filePath: "songs/3.mp3", coverPath: "covers/3.jpg"},
+    {songName: "Different Heaven & EH!DE", filePath: "songs/4.mp3", coverPath: "covers/4.jpg"},
+    {songName: "Janji-Heroes-Tonight", filePath: "songs/5.mp3", coverPath: "covers/5.jpg"},
+    {songName: "Rabba - Salam-e-Ishq", filePath: "songs/6.mp3", coverPath: "covers/6.jpg"},
+    {songName: "Sakhiyaan - Salam-e-Ishq", filePath: "songs/7.mp3", coverPath: "covers/7.jpg"},
+    {songName: "Bhula Dena - Salam-e-Ishq", filePath: "songs/8.mp3", coverPath: "covers/8.jpg"},
+    {songName: "Tumhari Kasam - Salam-e-Ishq", filePath: "songs/9.mp3", coverPath: "covers/9.jpg"},
+    {songName: "Na Jaana - Salam-e-Ishq", filePath: "songs/10.mp3", coverPath: "covers/10.jpg"},
 ]
 
-songItems.forEach((element, i)=>{ 
-    element.getElementsByTagName("img")[0].src = songs[i].coverPath; 
-    element.getElementsByClassName("songName")[0].innerText = songs[i].songName; 
-})
+
 
  
 
 // Handle play/pause click
 masterPlay.addEventListener('click', ()=>{
+    
     if(audioElement.paused || audioElement.currentTime<=0){
         audioElement.play();
+        
         masterPlay.classList.remove('fa-play-circle');
         masterPlay.classList.add('fa-pause-circle');
         gif.style.opacity = 1;
@@ -71,6 +82,7 @@ masterPlay.addEventListener('click', ()=>{
         masterPlay.classList.remove('fa-pause-circle');
         masterPlay.classList.add('fa-play-circle');
         gif.style.opacity = 0;
+       
     }
 })
 // Listen to Events
@@ -86,7 +98,7 @@ myProgressBar.addEventListener('change', ()=>{
 
 const makeAllPlays = ()=>{
     Array.from(document.getElementsByClassName('songItemPlay')).forEach((element)=>{
-        element.classList.remove('fa-pause-circle');
+      element.classList.remove('fa-pause-circle');
         element.classList.add('fa-play-circle');
     })
 }
@@ -101,7 +113,7 @@ Array.from(document.getElementsByClassName('songItemPlay')).forEach((element) =>
             masterPlay.classList.add('fa-play-circle');
             gif.style.opacity = 0;
         } else {
-            makeAllPlays();
+            
             songIndex = parseInt(e.target.id);
             e.target.classList.remove('fa-play-circle');
             e.target.classList.add('fa-pause-circle');
@@ -115,6 +127,7 @@ Array.from(document.getElementsByClassName('songItemPlay')).forEach((element) =>
         }
     });
 });
+
 function playSong(index) {
     audioElement.src = `songs/${index + 1}.mp3`;
     masterSongName.innerText = songs[index].songName;
@@ -147,6 +160,20 @@ function formatTime(time) {
     }
     return `${minutes}:${seconds}`;
 }
+
+songItems.forEach((element, i) => {
+    element.getElementsByTagName("img")[0].src = songs[i].coverPath;
+    element.getElementsByClassName("songName")[0].innerText = songs[i].songName;
+
+    // Create an audio element dynamically to fetch the duration of each song
+    let audio = new Audio(songs[i].filePath);
+    
+    // Wait until metadata is loaded to get the duration of the song
+    audio.addEventListener('loadedmetadata', () => {
+        let duration = formatTime(audio.duration);
+        element.getElementsByClassName("timestamp")[0].innerText = duration;  // Set the duration for this song
+    });
+});
 
 // Update total duration when the metadata is loaded
 audioElement.addEventListener('loadedmetadata', () => {
@@ -221,23 +248,69 @@ loopButton.addEventListener('click', () => {
         loopButton.classList.remove('active'); // Remove active class
     }
 });
-let isDarkMode = false;
-document.getElementById('themeToggle').addEventListener('click', () => {
-    document.body.classList.toggle('dark-theme');
-    isDarkMode = !isDarkMode;
-    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-});
-// Check if a theme is saved in localStorage and apply it on page load
 
-themeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-theme');
-    
-    // Store the user's theme preference in localStorage
-    if (document.body.classList.contains('dark-theme')) {
-        localStorage.setItem('theme', 'dark');
+
+
+// Get the theme toggle button
+const themeToggle = document.getElementById("themeToggle");
+
+// Function to toggle theme
+function toggleTheme() {
+    // Toggle the 'dark-theme' class on the body
+    document.body.classList.toggle("dark-theme");
+
+    // Update button text based on the current theme
+    if (document.body.classList.contains("dark-theme")) {
+        themeToggle.textContent = "Switch to Light Mode";
+        themeToggle.innerHTML = `<i class="fa fa-sun"></i> `; // Moon icon for dark mode
     } else {
-        localStorage.setItem('theme', 'light');
+        themeToggle.innerHTML = `<i class="fa fa-moon"></i> `; // Sun icon for light mode
     }
-});
+    }
 
+// Check saved theme in local storage on page load
+function toggleTheme() {
+    document.body.classList.toggle("dark-theme");
+
+    if (document.body.classList.contains("dark-theme")) {
+        themeToggle.innerHTML = `<i class="fa fa-sun"></i>`; // Moon to Sun for dark mode
+        localStorage.setItem("theme", "dark");
+    } else {
+        themeToggle.innerHTML = `<i class="fa fa-moon"></i> `; // Sun to Moon for light mode
+        localStorage.setItem("theme", "light");
+    }
+}
+
+// Add click event to the theme toggle button
+themeToggle.addEventListener("click", toggleTheme);
+
+document.getElementById('search-button').addEventListener('click', () => {
+    const query = document.getElementById('search-input').value.toLowerCase();
+    const filteredSongs = songs.filter(song => 
+      song.title.toLowerCase().includes(query) || 
+      song.artist.toLowerCase().includes(query) || 
+      song.album.toLowerCase().includes(query)
+    );
+  
+    displaySongs(filteredSongs);
+  });
+  
+  function displaySongs(songsList) {
+    const resultContainer = document.getElementById('song-results');
+    resultContainer.innerHTML = "";  // Clear previous results
+    
+    if (songsList.length === 0) {
+      resultContainer.innerHTML = "<p>No results found</p>";
+    } else {
+      songsList.forEach(song => {
+        const songElement = document.createElement('div');
+        songElement.classList.add('song');
+        songElement.innerHTML = `
+          <h3>${song.title}</h3>
+          <p>${song.artist} - ${song.album}</p>
+        `;
+        resultContainer.appendChild(songElement);
+      });
+    }
+  }
 
