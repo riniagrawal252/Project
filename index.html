@@ -6,6 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Spotify - Your favourite music is here</title>
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+
        
         </head>
 <body>
@@ -44,30 +46,32 @@
        
    
             
-            <div class="bottom"> <input type="range" name="range" id="myProgressBar" min="0" value="0" max="100"> <div class="icons">
-                <!-- fontawesome icons --> 
-                <i class="fas fa-3x fa-step-backward" id="previous"></i> 
-                <i class="fas fa-3x fa-play-circle" id="masterPlay"></i> <i class="fas fa-3x fa-step-forward" id="next"></i> 
-                <div class="icons-right"> <i id="loopButton" class="fa fa-repeat"></i> </div> </div>
-           
-            <div class="time-display">
-            <span id="currentTime">0:00</span> / <span id="durationTime">0:00</span>
+           <div class="bottom">
+    <input type="range" name="range" id="myProgressBar" min="0" value="0" max="100">
+    
+    <div class="icons">
+        <i class="fas fa-3x fa-step-backward" id="previous"></i>
+        <i class="fas fa-3x fa-play-circle" id="masterPlay"></i>
+        <i class="fas fa-3x fa-step-forward" id="next"></i>
+        
+        <div class="icons-right">
+            <i id="loopButton" class="fas fa-repeat"></i>
         </div>
-        <div class="volumeControl">
-            <i class="fas fa-volume-up" id="volumeIcon"></i>
-            <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5">
+    </div>
 
-        </div>
-            
-            <div class="icons-right">
-                <i id="loopButton" class="fa fa-repeat"></i>
-            </div>
-        </div>
-        
-        
+    <div class="time-display">
+        <span id="currentTime">0:00</span> / <span id="durationTime">0:00</span>
     </div>
     
-    <script src="script.js"></script>
-    <script src="https://kit.fontawesome.com/26504e4a1f.js" crossorigin="anonymous"></script>
+    <div class="volumeControl">
+        <i class="fas fa-volume-up" id="volumeIcon"></i>
+        <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5">
+    </div>
+</div>
+
+    
+    
+   
 </body>
+    <script src="script.js"></script>
 </html>
