@@ -14,7 +14,7 @@ let audioElement = new Audio('songs/1.mp3');
 let masterPlay = document.getElementById('masterPlay');
 let myProgressBar = document.getElementById('myProgressBar');
 let gif = document.getElementById('gif');
-let masterSongName = document.getElementById('songItemContainer');
+
 let songItems = Array.from(document.getElementsByClassName('songItem'));
 let currentTimeDisplay = document.getElementById('currentTime');
 let durationTimeDisplay = document.getElementById('durationTime');
