@@ -1,6 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
 /* Light theme (default) */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box;
+}
 body {
     background-color: antiquewhite;
     color: black;
@@ -30,10 +34,7 @@ nav.dark-theme, .container.dark-theme, .bottom.dark-theme {
 }
 
 
-*{
-    margin: 0;
-    padding: 0;
-}
+
 
 nav{
     font-family: 'Ubuntu', sans-serif;
