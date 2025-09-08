@@ -95,8 +95,11 @@ nav ul li{
     
 
 }
-.icons-right{
-    margin-right:150px;
+.icons-right {
+    position: absolute;
+    right: 20px; /* Adjust the value as needed */
+    top: 50%; /* Center vertically if needed */
+    
 }
 .icons i{
     cursor: pointer;
@@ -201,12 +204,7 @@ nav ul li{
     
 }
 
-.icons-right {
-    position: absolute;
-    right: 20px; /* Adjust the value as needed */
-    top: 50%; /* Center vertically if needed */
-    
-}
+
 
 
 
